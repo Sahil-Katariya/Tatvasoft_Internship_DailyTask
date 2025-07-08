@@ -1,0 +1,61 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# ====================
+# 🔧 Build & Output Files
+# ====================
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# ====================
+# 📦 Node Modules & Logs
+# ====================
+/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ====================
+# 🧠 IDE/Editor Settings
+# ====================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# ====================
+# 💻 Visual Studio Code (Keep only useful files)
+/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ====================
+# 📁 Visual Studio & its cache
+.vs/
+*.suo
+*.user
+*.cache
+*.vsidx
+
+# ====================
+# 🗃️ Angular Cache & Misc
+/.angular/cache/
+.sass-cache/
+.connect.lock
+/coverage/
+/libpeerconnection.log
+testem.log
+/typings/
+
+# ====================
+# 🧹 OS-generated files
+.DS_Store
+Thumbs.db
+
+# Optional
+.history/
