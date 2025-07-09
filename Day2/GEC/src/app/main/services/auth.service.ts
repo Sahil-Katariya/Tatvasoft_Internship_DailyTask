@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, type Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -40,7 +40,8 @@ export class AuthService {
   updateUser(data: FormData) {
     return this.http.post(
       `${this.apiUrl}${API_ENDPOINTS.AUTH.UPDATE_USER}`,
-      data
+      data,
+      { responseType: 'json' }
     );
   }
 

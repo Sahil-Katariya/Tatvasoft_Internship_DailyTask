@@ -17,8 +17,8 @@ export const API_ENDPOINTS = {
     ADD: "/Mission/AddMission",
     UPDATE: "/Mission/UpdateMission",
     DELETE: "/Mission/DeleteMission",
-    THEME_LIST: "/Common/MissionThemeList",
-    SKILL_LIST: "/Common/MissionSkillList",
+    THEME_LIST: "/Mission/GetMissionThemeList",
+    SKILL_LIST: "/Mission/GetMissionSkillList",
     APPLICATION_LIST: "/Mission/MissionApplicationList",
     APPLICATION_APPROVE: "/Mission/MissionApplicationApprove",
     APPLICATION_DELETE: "/Mission/MissionApplicationDelete",
@@ -65,8 +65,8 @@ export const API_ENDPOINTS = {
     VOLUNTEERING_MISSION_LIST: "/VolunteeringTimesheet/VolunteeringMissionList",
   },
   AdminUser:{
-    USER_LIST: "/AdminUser/UserDetailList",
-    DELETE_USER: "/AdminUser/DeleteUser",
+    USER_LIST: "/User/UserDetailList",
+    DELETE_USER: "/User/DeleteUser",
   },
   MISSION_THEME: {
     LIST: "/MissionTheme/GetMissionThemeList",

@@ -48,6 +48,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
   headText: string = 'Update User';
   userImage: any = '';
   selectedFile: File;
+  removeImage: boolean = false;
   previewUrl: string | ArrayBuffer;
   @ViewChild('imageInput') imageInputRef: any;
 
@@ -66,6 +67,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
         ],
       ],
       emailAddress: ['', [Validators.required, Validators.email]],
+      removeImage: this.removeImage,
     });
     const url = this._router.url;
     if (url.includes('updateProfile')) {
@@ -143,6 +145,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
             Validators.compose([Validators.required, Validators.email]),
           ],
           userType: [this.updateData.userType],
+          removeImage: [this.removeImage],
         });
       });
     this.unsubscribe.push(getUserSubscribe);
@@ -161,34 +164,36 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
         formData.append('profileImage', this.selectedFile);
       }
 
-      const updateUserSubscribe = this._service.updateUser(formData).subscribe(
-        (data: any) => {
-          if (data.result == 1) {
-            this._toast.success({
-              detail: 'SUCCESS',
-              summary: this.isupdateProfile
-                ? 'Profile Updated Successfully'
-                : data.data,
+      const updateUserSubscribe = this._service
+        .updateUser(this.updateForm.value)
+        .subscribe(
+          (data: any) => {
+            if (data.result == 1) {
+              this._toast.success({
+                detail: 'SUCCESS',
+                summary: this.isupdateProfile
+                  ? 'Profile Updated Successfully'
+                  : data.data,
+                duration: APP_CONFIG.toastDuration,
+              });
+              setTimeout(() => {
+                if (this.isupdateProfile) {
+                  this._router.navigate(['admin/profile']);
+                } else {
+                  this._router.navigate(['admin/user']);
+                }
+              }, 1000);
+            } else {
+              this._toastr.error(data.message);
+            }
+          },
+          (err) =>
+            this._toast.error({
+              detail: 'ERROR',
+              summary: err.message,
               duration: APP_CONFIG.toastDuration,
-            });
-            setTimeout(() => {
-              if (this.isupdateProfile) {
-                this._router.navigate(['admin/profile']);
-              } else {
-                this._router.navigate(['admin/user']);
-              }
-            }, 1000);
-          } else {
-            this._toastr.error(data.message);
-          }
-        },
-        (err) =>
-          this._toast.error({
-            detail: 'ERROR',
-            summary: err.message,
-            duration: APP_CONFIG.toastDuration,
-          })
-      );
+            })
+        );
       this.formValid = false;
       this.unsubscribe.push(updateUserSubscribe);
     }
@@ -225,6 +230,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
     this.selectedFile = null;
     this.previewUrl = null;
     this.updateData.profileImage = null;
+    this.updateForm.controls['removeImage'].setValue(true);
   }
 
   onImageError(event: any): void {

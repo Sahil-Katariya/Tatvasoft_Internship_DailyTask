@@ -226,7 +226,6 @@ export class UpdateMissionComponent implements OnInit, OnDestroy {
 
     if (this.editMissionForm.valid) {
       if (this.isFileUpload) {
-        console.log(this.formData);
         await this._commonService
           .uploadImage(this.formData)
           .pipe()
