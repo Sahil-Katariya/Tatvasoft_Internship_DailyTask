@@ -12,8 +12,8 @@ namespace Mission.Entities
             modelBuilder.Entity<User>().HasData(new User()
             {
                 Id = 1,
-                FirstName = "Admin",
-                LastName = "Tatva",
+                FirstName = "admin",
+                LastName = "tatvasoft",
                 EmailAddress = "admin@tatvasoft.com",
                 Password = "admin",
                 PhoneNumber = "01234567890",

@@ -10,7 +10,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { ToastrService } from 'ngx-toastr';
 import { APP_CONFIG } from 'src/app/main/configs/environment.config';
 import { AuthService } from 'src/app/main/services/auth.service';
 import { HeaderComponent } from '../../header/header.component';
@@ -26,6 +25,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./add-user.component.css'],
 })
 export class AddUserComponent implements OnInit, OnDestroy {
+  registerForm: FormGroup;
+  formValid: boolean = false;
   private unsubscribe: Subscription[] = [];
 
   constructor(
@@ -34,8 +35,6 @@ export class AddUserComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _toast: NgToastService
   ) {}
-  registerForm: FormGroup;
-  formValid: boolean;
 
   ngOnInit(): void {
     this.createRegisterForm();
@@ -44,38 +43,24 @@ export class AddUserComponent implements OnInit, OnDestroy {
   createRegisterForm() {
     this.registerForm = this._fb.group(
       {
-        firstName: [null, Validators.compose([Validators.required])],
-        lastName: [null, Validators.compose([Validators.required])],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         phoneNumber: [
-          null,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(10),
-            Validators.maxLength(10),
-          ]),
+          '',
+          [Validators.required, Validators.minLength(10), Validators.maxLength(10)],
         ],
-        emailAddress: [
-          null,
-          Validators.compose([Validators.required, Validators.email]),
-        ],
-        password: [
-          null,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(10),
-          ]),
-        ],
-        confirmPassword: [null, Validators.compose([Validators.required])],
+        emailAddress: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
+        confirmPassword: ['', Validators.required],
       },
-      { validator: [this.passwordCompareValidator] }
+      { validators: this.passwordCompareValidator }
     );
   }
 
-  passwordCompareValidator(fc: AbstractControl): ValidationErrors | null {
-    return fc.get('password')?.value === fc.get('confirmPassword')?.value
-      ? null
-      : { notmatched: true };
+  passwordCompareValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const confirm = control.get('confirmPassword')?.value;
+    return password === confirm ? null : { notmatched: true };
   }
 
   get firstName() {
@@ -99,44 +84,45 @@ export class AddUserComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.formValid = true;
+
     if (this.registerForm.valid) {
       const register = this.registerForm.value;
-      register.userType = 'user';
+      register.userType = 'user'; // Set the default userType
 
-      const registerUserSubscribe = this._service
-        .registerUser(register)
-        .subscribe(
-          (data: any) => {
-            debugger;
-            if (data.result == 1) {
-              //this.toastr.success(data.data);
-              this._toast.success({
-                detail: 'SUCCESS',
-                summary: data.data,
-                duration: APP_CONFIG.toastDuration,
-              });
-              setTimeout(() => {
-                this._router.navigate(['admin/user']);
-              }, 1000);
-            } else {
-              //this.toastr.error(data.message);
-              this._toast.error({
-                detail: 'ERROR',
-                summary: data.message,
-                duration: APP_CONFIG.toastDuration,
-              });
-            }
-          },
-          (err) => {
+      const sub = this._service.registerUser(register).subscribe({
+        next: (data: any) => {
+          if (data?.result === 1) {
+            this._toast.success({
+              detail: 'SUCCESS',
+              summary: data?.data || 'User added successfully!',
+              duration: APP_CONFIG.toastDuration,
+            });
+            setTimeout(() => this._router.navigate(['admin/user']), 1000);
+          } else {
             this._toast.error({
               detail: 'ERROR',
-              summary: err.message,
+              summary: data?.message || 'Something went wrong.',
               duration: APP_CONFIG.toastDuration,
             });
           }
-        );
+        },
+        error: (err) => {
+          this._toast.error({
+            detail: 'ERROR',
+            summary: err?.message || 'Server error',
+            duration: APP_CONFIG.toastDuration,
+          });
+        },
+      });
+
+      this.unsubscribe.push(sub);
       this.formValid = false;
-      this.unsubscribe.push(registerUserSubscribe);
+    } else {
+      this._toast.error({
+        detail: 'ERROR',
+        summary: 'Please fill out the form correctly.',
+        duration: APP_CONFIG.toastDuration,
+      });
     }
   }
 
@@ -145,6 +131,6 @@ export class AddUserComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe.forEach((sb) => sb.unsubscribe());
+    this.unsubscribe.forEach((sub) => sub.unsubscribe());
   }
 }

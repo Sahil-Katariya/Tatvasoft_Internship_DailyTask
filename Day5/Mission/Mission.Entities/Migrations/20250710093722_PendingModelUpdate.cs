@@ -5,7 +5,7 @@
 namespace Mission.Entities.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUserEntity : Migration
+    public partial class PendingModelUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

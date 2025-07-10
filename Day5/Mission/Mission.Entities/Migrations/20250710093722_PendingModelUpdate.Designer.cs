@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mission.Entities.Migrations
 {
     [DbContext(typeof(MissionDbContext))]
-    [Migration("20250709085906_AddUserEntity")]
-    partial class AddUserEntity
+    [Migration("20250710093722_PendingModelUpdate")]
+    partial class PendingModelUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,10 +67,10 @@ namespace Mission.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            EmailAddress = "admin@tatvasoft.com",
-                            FirstName = "Admin",
-                            LastName = "Tatva",
-                            Password = "admin",
+                            EmailAddress = "krishan@gmail.com",
+                            FirstName = "krishna",
+                            LastName = "zanzarukiya",
+                            Password = "123",
                             PhoneNumber = "01234567890",
                             UserType = "admin"
                         });

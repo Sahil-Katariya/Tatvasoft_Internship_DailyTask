@@ -64,10 +64,10 @@ namespace Mission.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            EmailAddress = "admin@tatvasoft.com",
-                            FirstName = "Admin",
-                            LastName = "Tatva",
-                            Password = "admin",
+                            EmailAddress = "krishan@gmail.com",
+                            FirstName = "krishna",
+                            LastName = "zanzarukiya",
+                            Password = "123",
                             PhoneNumber = "01234567890",
                             UserType = "admin"
                         });
