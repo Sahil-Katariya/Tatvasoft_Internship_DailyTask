@@ -35,10 +35,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddCors(cors => cors.AddPolicy("MyPolicy", builder =>
+builder.Services.AddCors(options =>
 {
-    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-}));
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .AllowAnyOrigin() // or use .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -70,6 +74,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("MyPolicy");
+app.UseCors("AllowFrontend"); // Use the CORS policy
 
 app.UseAuthorization();
 
@@ -83,3 +88,5 @@ app.UseStaticFiles(new StaticFileOptions
 app.MapControllers();
 
 app.Run();
+
+

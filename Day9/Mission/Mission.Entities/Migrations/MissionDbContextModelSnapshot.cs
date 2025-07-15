@@ -331,10 +331,10 @@ namespace Mission.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            EmailAddress = "admin@tatvasoft.com",
-                            FirstName = "Admin",
-                            LastName = "Tatva",
-                            Password = "admin",
+                            EmailAddress = "sahil@ahir.com",
+                            FirstName = "Sahil",
+                            LastName = "Ahir",
+                            Password = "sahil",
                             PhoneNumber = "01234567890",
                             UserType = "admin"
                         });

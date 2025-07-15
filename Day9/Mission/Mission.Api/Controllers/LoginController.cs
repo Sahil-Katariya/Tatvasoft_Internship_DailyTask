@@ -70,7 +70,7 @@ namespace Mission.Api.Controllers
         [HttpPost]
         [Route("UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUserRequestModel model)
-        {
+        { 
             var response = await _userService.UpdateUserAsync(model, _hostingEnvironment.ContentRootPath);
 
             if (response.Message == "User not found")
