@@ -65,7 +65,7 @@ export class MissionskillComponent implements OnInit, OnDestroy {
         this.closeDeleteSkillModal();
         setTimeout(() => {
           this._route.navigate(['admin/missionSkill']);
-        }, 1000);
+        }, 500);
       }
       else {
         this._toast.error({ detail: "ERROR", summary: data.message, duration: APP_CONFIG.toastDuration });

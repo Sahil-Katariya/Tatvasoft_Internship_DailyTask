@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this._toast.success({ detail: "SUCCESS", summary: data.data, duration: APP_CONFIG.toastDuration })
           setTimeout(() => {
             this._router.navigate(["admin"])
-          }, 1000)
+          }, 500)
         } else {
           //this.toastr.error(data.message);
           this._toast.error({ detail: "ERROR", summary: data.message, duration: APP_CONFIG.toastDuration })

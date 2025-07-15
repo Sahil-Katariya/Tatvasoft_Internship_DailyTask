@@ -112,7 +112,7 @@ export class MissionComponent implements OnInit, OnDestroy {
             setTimeout(() => {
               this.deleteModal.hide();
               window.location.reload();
-            }, 1000);
+            }, 500);
           } else {
             //this.toastr.error(data.message);
             this.toast.error({

@@ -270,7 +270,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this._toast.success({ detail: 'SUCCESS', summary: data.data });
           setTimeout(() => {
             this.missionData.totalSeats = this.missionData.totalSeats - 1;
-          }, 1000);
+          }, 500);
           window.location.reload();
         } else {
           this._toast.error({

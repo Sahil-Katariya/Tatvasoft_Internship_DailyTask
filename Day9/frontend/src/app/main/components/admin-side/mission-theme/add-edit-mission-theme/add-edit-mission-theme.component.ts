@@ -84,7 +84,7 @@ export class AddEditMissionThemeComponent implements OnInit, OnDestroy {
           this._toast.success({ detail: "SUCCESS", summary: data.data, duration: APP_CONFIG.toastDuration })
           setTimeout(() => {
             this._router.navigate(["admin/missionTheme"])
-          }, 1000)
+          }, 500)
         } else {
           this._toast.error({ detail: "ERROR", summary: data.message, duration: APP_CONFIG.toastDuration })
         }
@@ -101,7 +101,7 @@ export class AddEditMissionThemeComponent implements OnInit, OnDestroy {
           this._toast.success({ detail: "SUCCESS", summary: data.data, duration: APP_CONFIG.toastDuration })
           setTimeout(() => {
             this._router.navigate(["admin/missionTheme"])
-          }, 1000)
+          }, 500)
         } else {
           this._toast.error({ detail: "ERROR", summary: data.message, duration: APP_CONFIG.toastDuration })
         }

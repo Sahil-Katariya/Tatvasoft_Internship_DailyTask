@@ -209,7 +209,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
             this.volunteeringHoursForm.reset();
             this.closeVolunteeringHoursModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',
@@ -237,7 +237,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
             this.volunteeringHoursForm.reset();
             this.closeVolunteeringHoursModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',
@@ -264,7 +264,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.closeVolunteeringDeleteModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',
@@ -370,7 +370,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
             this.volunteeringGoalsForm.reset();
             this.closeVolunteeringGoalsModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',
@@ -398,7 +398,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
             this.volunteeringGoalsForm.reset();
             this.closeVolunteeringGoalsModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',
@@ -425,7 +425,7 @@ export class VolunteeringTimesheetComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.closeVolunteeringDeleteModal();
             window.location.reload();
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({
             detail: 'ERROR',

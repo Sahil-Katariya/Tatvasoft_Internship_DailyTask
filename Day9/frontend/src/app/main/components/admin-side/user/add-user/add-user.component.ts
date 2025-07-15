@@ -116,7 +116,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
               });
               setTimeout(() => {
                 this._router.navigate(['admin/user']);
-              }, 1000);
+              }, 500);
             } else {
               //this.toastr.error(data.message);
               this._toast.error({

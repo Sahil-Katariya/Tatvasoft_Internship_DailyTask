@@ -327,7 +327,7 @@ export class UpdateMissionComponent implements OnInit, OnDestroy {
               });
               setTimeout(() => {
                 this._router.navigate(['admin/mission']);
-              }, 1000);
+              }, 500);
             } else {
               this._toastr.error(data.message);
               // this._toast.error({detail:"ERROR",summary:data.message,duration:3000});

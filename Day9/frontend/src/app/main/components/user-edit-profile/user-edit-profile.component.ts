@@ -203,7 +203,7 @@ export class UserEditProfileComponent implements OnInit, OnDestroy {
             this._toast.success({ detail: 'SUCCESS', summary: data.data });
             setTimeout(() => {
               this.closeAddYourSkillModal();
-            }, 1000);
+            }, 500);
           } else {
             this._toast.error({ detail: 'ERROR', summary: data.message });
           }
@@ -454,7 +454,7 @@ export class UserEditProfileComponent implements OnInit, OnDestroy {
               });
               setTimeout(() => {
                 this._router.navigate(['home']);
-              }, 1000);
+              }, 500);
             } else {
               this._toast.error({
                 detail: 'ERROR',
@@ -497,7 +497,7 @@ export class UserEditProfileComponent implements OnInit, OnDestroy {
               form.value.subject = '';
               form.value.message = '';
               this.closeContactUsModal();
-            }, 1000);
+            }, 500);
           } else {
             this._toast.error({
               detail: 'ERROR',
@@ -540,7 +540,7 @@ export class UserEditProfileComponent implements OnInit, OnDestroy {
                 this.closeChangePasswordModal();
                 this._loginService.loggedOut();
                 this._router.navigate(['']);
-              }, 1000);
+              }, 500);
             } else {
               this._toast.error({
                 detail: 'ERROR',

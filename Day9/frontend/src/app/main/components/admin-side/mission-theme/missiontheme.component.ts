@@ -67,7 +67,7 @@ export class MissionthemeComponent implements OnInit, OnDestroy {
           this.closeRemoveMissionThemeModal();
           setTimeout(() => {
             this._router.navigate(['admin/missionTheme']);
-          }, 1000);
+          }, 500);
         } else {
           this._toast.error({ summary: data.message, duration: APP_CONFIG.toastDuration });
         }

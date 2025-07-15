@@ -92,7 +92,7 @@ export class UserComponent implements OnInit, OnDestroy {
             setTimeout(() => {
               this.deleteModal.hide();
               window.location.reload();
-            }, 1000);
+            }, 500);
           } else {
             this._toast.error({
               detail: 'ERROR',

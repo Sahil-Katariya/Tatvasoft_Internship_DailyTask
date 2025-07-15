@@ -173,7 +173,7 @@ export class VolunteeringMissionComponent implements OnInit, OnDestroy {
             setTimeout(() => {
               this.closeApplyMissionModal();
               this._router.navigate(['/home']);
-            }, 1000);
+            }, 500);
           } else {
             this._toast.error({
               detail: 'ERROR',

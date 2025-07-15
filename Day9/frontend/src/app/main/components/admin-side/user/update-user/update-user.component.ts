@@ -177,7 +177,7 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
               } else {
                 this._router.navigate(['admin/user']);
               }
-            }, 1000);
+            }, 500);
           } else {
             this._toastr.error(data.message);
           }
